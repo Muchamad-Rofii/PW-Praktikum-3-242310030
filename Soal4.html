@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Saldo Tabungan</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+
+    <div style="display: flex; gap: 50px; align-items: flex-start;">
+
+        <div>
+            <h2>Hitung Saldo Tabungan</h2>
+            <form id="formTabungan">
+                Saldo Awal:<br>
+                <input type="number" id="inputSaldo" value="100000" required><br><br>
+
+                Bunga (%):<br>
+                <input type="number" id="inputBunga" value="10" required><br><br>
+
+                Waktu (Bulan):<br>
+                <input type="number" id="inputWaktu" value="3" required><br><br>
+
+                <button type="button" onclick="hitungSaldo()">Hitung</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h3>Output Hasil:</h3>
+            <table border="1" cellpadding="8" cellspacing="0" style="min-width: 250px; text-align: left;">
+                <thead>
+                    <tr style="background-color: #e0e0e0;">
+                        <th>Bulan</th>
+                        <th>Saldo Akhir</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelOutput">
+                    <tr>
+                        <td colspan="2" style="text-align: center;">Belum ada data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function hitungSaldo() {
+            let saldo = parseFloat(document.getElementById('inputSaldo').value);
+            let bunga = parseFloat(document.getElementById('inputBunga').value);
+            let waktu = parseInt(document.getElementById('inputWaktu').value);
+
+            if (isNaN(saldo) || isNaN(bunga) || isNaN(waktu) || waktu <= 0) {
+                alert("Mohon isi form dengan angka yang valid!");
+                return;
+            }
+
+            const tabelOutput = document.getElementById('tabelOutput');
+            
+            tabelOutput.innerHTML = '';
+
+            for (let i = 1; i <= waktu; i++) {
+                saldo = saldo + (saldo * (bunga / 100));
+
+                let trBaru = document.createElement('tr');
+
+                let tdBulan = document.createElement('td');
+                tdBulan.innerText = "Saldo Bulan " + i;
+
+                let tdSaldo = document.createElement('td');
+                tdSaldo.innerText = "Rp. " + Math.round(saldo);
+
+                trBaru.appendChild(tdBulan);
+                trBaru.appendChild(tdSaldo);
+
+                tabelOutput.appendChild(trBaru);
+            }
+        }
+    </script>
+
+</body>
+</html>

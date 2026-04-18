@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <form onsubmit="tampilkanData(event)">
+        <label for="nim">NIM:</label><br>
+        <input type="text" id="nim" name="nim"><br><br>
+
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama"><br><br>
+
+        <label for="jenis_kelamin">Jenis Kelamin:</label><br>
+        <input type="radio" id="laki_laki" name="jenis_kelamin" value="Laki-laki">
+        <label for="laki_laki">Laki-laki</label><br>
+        <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan">
+        <label for="perempuan">Perempuan</label><br><br>
+
+        <label for="agama">Agama:</label><br>
+        <select id="agama" name="agama">
+            <option value="Islam">Islam</option>
+            <option value="Kristen">Kristen</option>
+            <option value="Katolik">Katolik</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Budha">Budha</option>
+            <option value="Konghucu">Konghucu</option>
+        </select><br><br>
+
+        <label for="status">Status : </label><br>
+        <input type="radio" name="status" value="Belum Menikah" required>Belum Menikah<br>
+        <input type="radio" name="status" value="Menikah">Menikah<br><br>
+
+        <label for="jurusan">Jurusan : </label><br>
+        <select name="jurusan" id="jurusan" required>
+            <option value="">-- Pilih Jurusan --</option>
+            <option value="Teknik Informatika">Teknologi Informasi</option>
+            <option value="Sistem Informasi">Sistem Informasi</option>
+            <option value="Pariwisata">Pariwisata</option>
+        </select><br><br>
+
+        <label for="komentar">Komentar : </label><br>
+        <textarea name="komentar" id="komentar" rows="4" cols="50" required></textarea><br><br>
+        
+        <button type="submit">Kirim</button>
+        </form>
+
+        <h1>Output Data : </h1>
+        <p><b>NIM : </b><span id="out_nim"></span></p>
+        <p><b>Nama : </b><span id="out_nama"></span></p>
+        <p><b>Jenis Kelamin : </b><span id="out_jenis_kelamin"></span></p>
+        <p><b>Agama : </b><span id="out_agama"></span></p>
+        <p><b>Status : </b><span id="out_status"></span></p>
+        <p><b>Jurusan : </b><span id="out_jurusan"></span></p>
+        <p><b>Komentar : </b><span id="out_komentar"></span></p>
+
+<script>
+function tampilkanData(event) {
+    event.preventDefault();
+
+    var nim = document.getElementById('nim').value;
+    document.getElementById('out_nim').innerText = nim;
+
+    var nama = document.getElementById('nama').value;
+    document.getElementById('out_nama').innerText = nama;
+
+    var jenisKelamin = document.querySelector('input[name="jenis_kelamin"]:checked').value;
+    document.getElementById('out_jenis_kelamin').innerText = jenisKelamin
+
+    var agama = document.getElementById('agama').value;
+    document.getElementById('out_agama').innerText = agama;
+
+    var status = document.querySelector('input[name="status"]:checked').value;
+    document.getElementById('out_status').innerText = status;
+
+    var jurusan = document.getElementById('jurusan').value;
+    document.getElementById('out_jurusan').innerText = jurusan;
+
+    var komentar = document.getElementById('komentar').value;
+    document.getElementById('out_komentar').innerText = komentar;
+}
+</script>
+</body>
+</html>
